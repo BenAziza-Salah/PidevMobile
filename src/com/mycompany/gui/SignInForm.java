@@ -29,6 +29,9 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import com.mycompany.services.ServiceAdmin;
+import com.mycompany.services.ServiceClient;
+
 
 /**
  * Sign in UI
@@ -48,7 +51,7 @@ public class SignInForm extends BaseForm {
         getTitleArea().setUIID("Container");
         setUIID("SignIn");
         
-        add(BorderLayout.NORTH, new Label(res.getImage("Logo.png"), "LogoLabel"));
+        add(BorderLayout.NORTH, new Label(res.getImage("terrain.png"), "LogoLabel"));
         
         TextField username = new TextField("", "Username", 20, TextField.ANY);
         TextField password = new TextField("", "Password", 20, TextField.PASSWORD);
@@ -56,9 +59,16 @@ public class SignInForm extends BaseForm {
         password.setSingleLineTextArea(false);
         Button signIn = new Button("Sign In");
         Button signUp = new Button("Sign Up");
+        
+        String email =username.getText();
+        //mot de passe oublié 
+        Button mp = new Button("mot de passe oublié?","CenterLabel");
+        
+        
+        
         signUp.addActionListener(e -> new SignUpForm(res).show());
         signUp.setUIID("Link");
-        Label doneHaveAnAccount = new Label("Don't have an account?");
+        Label doneHaveAnAccount = new Label("Vous n'avez aucun compte?");
         
         Container content = BoxLayout.encloseY(
                 new FloatingHint(username),
@@ -66,12 +76,31 @@ public class SignInForm extends BaseForm {
                 new FloatingHint(password),
                 createLineSeparator(),
                 signIn,
-                FlowLayout.encloseCenter(doneHaveAnAccount, signUp)
+                FlowLayout.encloseCenter(doneHaveAnAccount, signUp),mp
         );
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
         signIn.requestFocus();
-        signIn.addActionListener(e -> new NewsfeedForm(res).show());
+        signIn.addActionListener(e -> {
+            if (ServiceAdmin.getInstance().getByEmail(email)== true)
+            {   
+            ServiceAdmin.getInstance().signin(username, password, res);
+            }else if (ServiceClient.getInstance().getByEmail(email)==true)
+            {
+              ServiceClient.getInstance().signin(username, password, res);
+            }
+         });
+     
+       
+        
+        // Mp oublie event 
+        
+        mp.addActionListener((e) -> {
+        
+            new ActivateForm(res).show();
+        });
     }
+    
+    
     
 }

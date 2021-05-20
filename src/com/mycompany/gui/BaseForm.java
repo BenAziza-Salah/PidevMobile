@@ -39,7 +39,7 @@ import com.codename1.ui.util.Resources;
  * @author Shai Almog
  */
 public class BaseForm extends Form {
-Form current;
+
     public BaseForm() {
     }
 
@@ -68,7 +68,7 @@ Form current;
 
     protected void addSideMenu(Resources res) {
         Toolbar tb = getToolbar();
-        Image img = res.getImage("profile-background.jpg");
+        Image img = res.getImage("back.jpg");
         if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
             img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
         }
@@ -79,12 +79,15 @@ Form current;
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
                 sl,
                 FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
+                        new Label(res.getImage(""), "PictureWhiteBackgrond"))
         ));
         
-        tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new NewsfeedForm(res).show());
+        tb.addMaterialCommandToSideMenu("Gestion Admin ", FontImage.MATERIAL_EDIT, e -> new AfficherAdmin(res).show());
+        tb.addMaterialCommandToSideMenu("Gestion Client ", FontImage.MATERIAL_EDIT, e -> new AfficherClient(res).show());
+        tb.addMaterialCommandToSideMenu("Gestion Terrain ", FontImage.MATERIAL_EDIT, e -> new AfficherClient(res).show());
+        tb.addMaterialCommandToSideMenu("Gestion Reservation ", FontImage.MATERIAL_EDIT, e -> new AfficherClient(res).show());
+        tb.addMaterialCommandToSideMenu("Gestion Store ", FontImage.MATERIAL_EDIT, e -> new AfficherClient(res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
-        tb.addMaterialCommandToSideMenu("Terrain", FontImage.MATERIAL_SETTINGS, e -> new AfficherTerrainForm(current));
     }
 }

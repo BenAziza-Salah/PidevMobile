@@ -55,16 +55,16 @@ public class ProfileForm extends BaseForm {
         tb.addSearchCommand(e -> {});
         
         
-        Image img = res.getImage("profile-background.jpg");
-        if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
+       Image img = res.getImage("back.jpg");
+         if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
             img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
-        }
+       }
         ScaleImageLabel sl = new ScaleImageLabel(img);
         sl.setUIID("BottomPad");
         sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
 
-        Label facebook = new Label("786 followers", res.getImage("facebook-logo.png"), "BottomPad");
-        Label twitter = new Label("486 followers", res.getImage("twitter-logo.png"), "BottomPad");
+        Label facebook = new Label("", res.getImage(""), "BottomPad");
+        Label twitter = new Label("", res.getImage(""), "BottomPad");
         facebook.setTextPosition(BOTTOM);
         twitter.setTextPosition(BOTTOM);
         
@@ -74,33 +74,33 @@ public class ProfileForm extends BaseForm {
                     GridLayout.encloseIn(3, 
                             facebook,
                             FlowLayout.encloseCenter(
-                                new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond")),
+                                new Label(res.getImage(""), "PictureWhiteBackgrond")),
                             twitter
                     )
                 )
         ));
 
-        TextField username = new TextField("sandeep");
-        username.setUIID("TextFieldBlack");
-        addStringValue("Username", username);
-
-        TextField email = new TextField("sandeep@gmail.com", "E-Mail", 20, TextField.EMAILADDR);
-        email.setUIID("TextFieldBlack");
-        addStringValue("E-Mail", email);
-        
-        TextField password = new TextField("sandeep", "Password", 20, TextField.PASSWORD);
-        password.setUIID("TextFieldBlack");
-        addStringValue("Password", password);
-
-        CheckBox cb1 = CheckBox.createToggle(res.getImage("on-off-off.png"));
-        cb1.setUIID("Label");
-        cb1.setPressedIcon(res.getImage("on-off-on.png"));
-        CheckBox cb2 = CheckBox.createToggle(res.getImage("on-off-off.png"));
-        cb2.setUIID("Label");
-        cb2.setPressedIcon(res.getImage("on-off-on.png"));
-        
-        addStringValue("Facebook", FlowLayout.encloseRightMiddle(cb1));
-        addStringValue("Twitter", FlowLayout.encloseRightMiddle(cb2));
+          TextField username = new TextField("");
+          username.setUIID("TextFieldBlack");
+          addStringValue("Welcome a Sur Terrain", username );
+//
+//        TextField email = new TextField("sandeep@gmail.com", "E-Mail", 20, TextField.EMAILADDR);
+//        email.setUIID("TextFieldBlack");
+//        addStringValue("E-Mail", email);
+//        
+//        TextField password = new TextField("sandeep", "Password", 20, TextField.PASSWORD);
+//        password.setUIID("TextFieldBlack");
+//        addStringValue("Password", password);
+//
+//        CheckBox cb1 = CheckBox.createToggle(res.getImage("on-off-off.png"));
+//        cb1.setUIID("Label");
+//        cb1.setPressedIcon(res.getImage("on-off-on.png"));
+//        CheckBox cb2 = CheckBox.createToggle(res.getImage("on-off-off.png"));
+//        cb2.setUIID("Label");
+//        cb2.setPressedIcon(res.getImage("on-off-on.png"));
+//        
+//        addStringValue("Facebook", FlowLayout.encloseRightMiddle(cb1));
+//        addStringValue("Twitter", FlowLayout.encloseRightMiddle(cb2));
     }
     
     private void addStringValue(String s, Component v) {
