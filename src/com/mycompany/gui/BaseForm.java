@@ -32,6 +32,7 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import com.mycompany.charts.ChartDemosForm;
 
 /**
  * Base class for the forms with common functionality
@@ -89,5 +90,8 @@ public class BaseForm extends Form {
         tb.addMaterialCommandToSideMenu("Gestion Store ", FontImage.MATERIAL_EDIT, e -> new AfficherClient(res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
+  tb.addMaterialCommandToSideMenu("List Categories", FontImage.MATERIAL_UPDATE,e -> new ListCatsForm(res));  
+       tb.addMaterialCommandToSideMenu("List Article", FontImage.MATERIAL_UPDATE,e -> new ListArticlesForm(res));
+ tb.addMaterialCommandToSideMenu("Statistique Article", FontImage.MATERIAL_UPDATE,  e -> new ChartDemosForm(res).show());
     }
 }
